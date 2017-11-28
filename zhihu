@@ -1,0 +1,16 @@
+import requests
+# from faker import Faker
+import re
+
+
+url = 'https://www.zhihu.com/people/wa-jue-ji-xiao-wang-zi-45/following'
+
+
+
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.89 Safari/537.36'}
+
+
+html = requests.get(url,headers=headers)
+
+# print(html.status_code)
+# print(html.text)
