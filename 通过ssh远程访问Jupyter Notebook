@@ -1,0 +1,62 @@
+通过ssh远程访问Jupyter Notebook
+远程操作
+
+第一步当然是连接你的计算服务器：
+
+
+ssh root@server -p 22
+1
+ssh root@server -p 22
+其中server是服务器的ip地址，22是ssh服务器的端口，根据具体服务器修改。
+
+screenshot-from-2017-06-25-11-45-43
+
+第二步，连接服务器后，启动jupyter notebook
+
+root@19fe89d2f1a5:~# jupyter notebook --allow-root --port=8889
+[W 20:13:41.571 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 20:13:41.577 NotebookApp] Serving notebooks from local directory: /root
+[I 20:13:41.577 NotebookApp] 0 active kernels 
+[I 20:13:41.577 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8889/?token=74b50cc65f38b8b3ea5f4ae99fd3aed12ccf2f4b2712a9aa
+[I 20:13:41.577 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 20:13:41.577 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8889/?token=74b50cc65f38b8b3ea5f4ae99fd3aed12ccf2f4b2712a9aa
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+root@19fe89d2f1a5:~# jupyter notebook --allow-root --port=8889
+[W 20:13:41.571 NotebookApp] WARNING: The notebook server is listening on all IP addresses and not using encryption. This is not recommended.
+[I 20:13:41.577 NotebookApp] Serving notebooks from local directory: /root
+[I 20:13:41.577 NotebookApp] 0 active kernels
+[I 20:13:41.577 NotebookApp] The Jupyter Notebook is running at: http://[all ip addresses on your system]:8889/?token=74b50cc65f38b8b3ea5f4ae99fd3aed12ccf2f4b2712a9aa
+[I 20:13:41.577 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 20:13:41.577 NotebookApp]
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8889/?token=74b50cc65f38b8b3ea5f4ae99fd3aed12ccf2f4b2712a9aa
+这里在端口8889启动了jupyter notebook。并且提供链接的token为74b50cc65f38b8b3ea5f4ae99fd3aed12ccf2f4b2712a9aa
+
+本机操作
+
+另外新建立一个命令行 terminal. 以下的命令只适合Linux（包括ubuntu）运行，下面命令建立端口映射8888到远程的8889
+local_user@local_host$ ssh -N -f -L localhost:8888:localhost:8889 root@server -p 22
+1
+local_user@local_host$ ssh -N -f -L localhost:8888:localhost:8889 root@server -p 22
+记得修改server和22，server是ssh服务器ip地址，22是ssh服务器的端口。
+
+打开浏览器，然后输入在浏览器输入
+http://localhost:8888
+
+输入上面提供的token即可连接notebook
